@@ -1,0 +1,2 @@
+﻿[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessage(category: "Style", checkId: "IDE0001")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessage(category: "Style", checkId: "IDE0002")]
