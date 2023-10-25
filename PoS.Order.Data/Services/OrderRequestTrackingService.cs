@@ -8,9 +8,6 @@ using PoS.Order.Domain.Filters.Validators;
 using PoS.Order.Domain.Wrappers;
 using PoS.Order.Domain.Models;
 using PoS.Order.Domain.Settings;
-using Microsoft.Win32.SafeHandles;
-using System.Data.Common;
-using System.Reflection.Metadata.Ecma335;
 
 namespace PoS.Order.Data.Services
 {
