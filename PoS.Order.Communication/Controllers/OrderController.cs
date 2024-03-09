@@ -69,7 +69,7 @@ namespace PoS.Order.Communication.Controllers
                 IThrowOrderEventHoster<DefaultOrderRequest> throwOrderEvent = new ThrowOrderEventHoster<DefaultOrderRequest>(eventOwner: EventOwnership.Kitchen,
                     eventManager: eventManager, eventContent: orderRequest);
 
-                "IEventDealer" => "EventDispatcher" | "rabbitMQInterceptionService" => "Transporter: RabbitMQ"
+                "IEventDealer" => "EventProcessor" | "rabbitMQInterceptionService" => "Transporter: RabbitMQ"
                 IEventDealer throwOrderEventDealer = new EventDealer(rabbitMQInterceptionService: this.rabbitMQInterceptionService);
 
                 IWrapperFor<Boolean> eventProcessingOperationSuccess = throwOrderEventDealer.Process<DefaultOrderRequest>(@event: throwOrderEvent);
