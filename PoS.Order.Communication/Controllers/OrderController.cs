@@ -59,17 +59,17 @@ namespace PoS.Order.Communication.Controllers
 
             if(onOrderRequestRegistering.OperationStatus == DbOperationsStatus.Success)
             {
-                // "IEventManager" => "MessageTransportProtocols"
+                // "IEventManager" => "EventSettings"
                 IEventManager eventManager = new EventManager
                 (
                     workingExchange: "Kitchen", workingQueue: order.Category.ToString(), exchangeQueueBindingKey: $"kitchen.{order.Category}", dispatchType: DispatchType.Direct
                 );
                 
-                // "IThrowOrderEventHoster" => "MessageSttings"
+                // "IThrowOrderEventHoster" => "Event"
                 IThrowOrderEventHoster<DefaultOrderRequest> throwOrderEvent = new ThrowOrderEventHoster<DefaultOrderRequest>(eventOwner: EventOwnership.Kitchen,
                     eventManager: eventManager, eventContent: orderRequest);
 
-                "IEventDealer" => "MessageDispatcher"
+                "IEventDealer" => "EventDispatcher" | "rabbitMQInterceptionService" => "Transporter: RabbitMQ"
                 IEventDealer throwOrderEventDealer = new EventDealer(rabbitMQInterceptionService: this.rabbitMQInterceptionService);
 
                 IWrapperFor<Boolean> eventProcessingOperationSuccess = throwOrderEventDealer.Process<DefaultOrderRequest>(@event: throwOrderEvent);
